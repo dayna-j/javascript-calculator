@@ -2,34 +2,39 @@
 
 <head>
 	<title>JavaScript Calculator</title>
+	<script src=jquery-3.2.1.js></script>
 	<script src=javascript-calculator.js></script>
 	<link rel="stylesheet" type="text/css" href="main.css"> 
 </head>
 
 <body>
-	<div>
+	<div id="form-container">
+	<div id="flex-container">
 		<form name="calculator-form">
-			<input type=text name='display' value=''>
-			<input type=button name='7' value='7'>
-			<input type=button name='8' value='8'>
-			<input type=button name='9' value='9'>
-			<input type=button name='/' value='/'>
-			<input type=button name='%' value='%'>
-			<input type=button name='4' value='4'>
-			<input type=button name='5' value='5'>
-			<input type=button name='6' value='6'>
-			<input type=button name='*' value='*'>
-			<input type=button name='1/x' value='1/x'>
-			<input type=button name='1' value='1'>
-			<input type=button name='2' value='2'>
-			<input type=button name='3' value='3'>
-			<input type=button name='-' value='-'>
-			<input type=button name='=' value='='>
-			<input type=button name='0' value='0'>
-			<input type=button name='.' value='.'>
-			<input type=button name='+' value='+'>
-			<input type=button name='=' value='='>
+			<div id="display-div">
+				<input type=text class='display' name='display' value=''>
+			</div>
+			<input type=button id='7' name='7' value='7' onclick="appendInputArray()">
+			<input type=button id="8" name='8' value='8'>
+			<input type=button id="9" name='9' value='9'>
+			<input type=button id="/" name='/' value='/'>
+			<input type=button id="%" name='%' value='%'>
+			<input type=button id="4" name='4' value='4'>
+			<input type=button id="5" name='5' value='5'>
+			<input type=button id="6" name='6' value='6'>
+			<input type=button id="*" name='*' value='*'>
+			<input type=button id="1/x" name='1/x' value='1/x'>
+			<input type=button id="1" name='1' value='1'>
+			<input type=button id="2" name='2' value='2'>
+			<input type=button id="3" name='3' value='3'>
+			<input type=button id="-" name='-' value='-'>
+			<input type=button id="=" name='=' value='='>
+			<input type=button id="0" name='0' value='0'>
+			<input type=button id="." name='.' value='.'>
+			<input type=button id="+" name='+' value='+'>
+			<input type=button id="=" name='=' value='='>
 		</form>
+	</div>
 	</div>
 </body>
 

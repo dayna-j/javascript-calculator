@@ -1,0 +1,17 @@
+*{margin: 0 auto;}
+
+#form-container{
+	background-color: peachpuff;
+	width: 200px;
+}
+
+#flex-container{
+	display:flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+}
+
+#display-div{
+	
+}
