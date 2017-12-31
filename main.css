@@ -6,12 +6,25 @@ opKey = [plus/minus, sqrt, division, modulus, multiplication, reciprocal, subtra
 		decimal point, equals]
 */
 
-*{margin: 0 auto;}
+*{
+	margin: 0 auto;
+	box-sizing: border-box;
+	/*top: 50px;*/
+}
 
-body{background-color: aliceblue;}
+body{
+	background-color: #f0f8ff;
+}
+
+#display_fieldset{
+	position: relative;
+	/*top: 1px;*/
+}
 
 .display{
-	background-color: aqua;
+	background-color: #B4DCFF;
+	font-family: Consolas;
+	text-align: right;
 }
 
 .Key{
@@ -19,20 +32,29 @@ body{background-color: aliceblue;}
 	border: 2px solid black;
 }
 
+.Key:hover{
+	border: 1px solid black;
+}
+
 .numKey{
-	background-color: darkslategrey;
+	background-color: #F2F1FF;
 }
 
 .adminKey{
-	background-color: mediumvioletred;
+	background-color: #7BFECD;
 }
 
 .opkey{
-	background-color: darkolivegreen;
+	background-color: #BDBAFF;
+}
+
+.row{
+	margin: 4px;
 }
 
 #form-container{
-	background-color: peachpuff;
+	background-color: #FFC7AE;
+	border: 2px ridge cornsilk;
 	width: 200px;
 }
 
