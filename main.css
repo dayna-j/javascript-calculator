@@ -1,4 +1,35 @@
+/* 
+3 classes of buttons; numKey, opKey,adminKey
+numKey = [0,1,2,3,4,5,6,7,8,9]
+adminKey = [Back, C, CE]
+opKey = [plus/minus, sqrt, division, modulus, multiplication, reciprocal, subtract, add,
+		decimal point, equals]
+*/
+
 *{margin: 0 auto;}
+
+body{background-color: aliceblue;}
+
+.display{
+	background-color: aqua;
+}
+
+.Key{
+	margin: 1px;
+	border: 2px solid black;
+}
+
+.numKey{
+	background-color: darkslategrey;
+}
+
+.adminKey{
+	background-color: mediumvioletred;
+}
+
+.opkey{
+	background-color: darkolivegreen;
+}
 
 #form-container{
 	background-color: peachpuff;

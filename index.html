@@ -13,44 +13,44 @@
 		<form name="calculator-form">
 			<fieldset id="display_fieldset">
 			<div id="display-div">
-				<input type=text class='display' name='displayResult' value='Display calc result'>
+				<input type=text class='display' name='displayResult' value='0'>
 			</div>
 			<div>
-				<input type=text class='display' name='displayEquation' value='Display calc string'>
+				<input type=text class='display' name='displayEquation' value='0'>
 			</div>
 			</fieldset>
 			<div class = 'row'>
-				<input type="button" id="backButton" name="backButton" class="adminKey" value="<--" onclick="Calculator.keyPress">
-				<input type="button" id="clearButton" name="clearButton" class="adminKey" value="C" onclick="keyPress()">
-				<input type="button" id="clearAllButton" name="clearAllButton" class="adminKey" value="CE" onclick="keyPress()">
-				<input type="button" id="plusMinusButton" name="plusMinusButton" class="opKey" value="+/-" onclick="keyPress()">
-				<input type="button" id="squareRootButton" name="squareRootButton" class="opKey" value="sqrt" onclick="keyPress()">
+				<input type="button" id="backButton" name="backButton" class="adminKey Key" value="<--" onClick="calc.keyPress()">
+				<input type="button" id="clearButton" name="clearButton" class="adminKey Key" value="C" onClick="calc.keyPress();">
+				<input type="button" id="clearAllButton" name="clearAllButton" class="adminKey Key" value="CE" onClick="calc.keyPress();">
+				<input type="button" id="plusMinusButton" name="plusMinusButton" class="opKey Key" value="+/-" onclick="keyPress()">
+				<input type="button" id="squareRootButton" name="squareRootButton" class="opKey Key" value="√" onclick="keyPress()">
 			</div>
 			<div class = 'row'>		
-				<input type=button id='7' name='7' class='numKey' value='7' onclick="keyPress()">
-				<input type=button id="8" name='8' class='numKey' value='8' onclick="keyPress()">
-				<input type=button id="9" name='9' class='numKey' value='9' onclick="keyPress()">
-				<input type=button id="/" name='/' class="opKey" value='/' onclick="keyPress()">
-				<input type=button id="%" name='%' class="opKey" value='%' onclick="keyPress()">
+				<input type=button id='7' name='7' class='numKey Key' value='7' onclick="keyPress()">
+				<input type=button id="8" name='8' class='numKey Key' value='8' onclick="keyPress()">
+				<input type=button id="9" name='9' class='numKey Key' value='9' onclick="keyPress()">
+				<input type=button id="/" name='/' class="opKey Key" value='/' onclick="keyPress()">
+				<input type=button id="%" name='%' class="opKey Key" value='%' onclick="keyPress()">
 			</div>
 			<div class = 'row'>
-				<input type=button id="4" name='4' class='numKey' value='4' onclick="keyPress()">
-				<input type=button id="5" name='5' class='numKey' value='5' onclick="keyPress()">
-				<input type=button id="6" name='6' class='numKey' value='6' onclick="keyPress()">
-				<input type=button id="*" name='*' class="opKey" value='*' onclick="keyPress()">
-				<input type=button id="1/x" name='1/x' class="opKey" value='1/x'>
+				<input type=button id="4" name='4' class='numKey Key' value='4' onclick="keyPress()">
+				<input type=button id="5" name='5' class='numKey Key' value='5' onclick="keyPress()">
+				<input type=button id="6" name='6' class='numKey Key' value='6' onclick="keyPress()">
+				<input type=button id="*" name='*' class="opKey Key" value='*' onclick="keyPress()">
+				<input type=button id="1/x" name='1/x' class="opKey Key" value='1/x'>
 			</div>
 			<div class='row'>
-				<input type=button id="1" name='1' class='numKey' value='1' onclick="keyPress()">
-				<input type=button id="2" name='2' class='numKey' value='2' onclick="keyPress()">
-				<input type=button id="3" name='3' class='numKey' value='3' onclick="keyPress()">
-				<input type=button id="-" name='-' value='-' onclick="keyPress()">
+				<input type=button id="1" name='1' class='numKey Key' value='1' onclick="keyPress()">
+				<input type=button id="2" name='2' class='numKey Key' value='2' onclick="keyPress()">
+				<input type=button id="3" name='3' class='numKey Key' value='3' onclick="keyPress()">
+				<input type=button id="-" name='-' class='opKey Key' value='-' onclick="keyPress()">
 			</div>
 			<div class = 'row'>
-			<input type=button id="0" name='0' class='numKey' value='0' onclick="keyPress()">
-				<input type=button id="." name='.' class="opKey" value='.' onclick="keyPress()">
-				<input type=button id="+" name='+' class="opKey" value='+' onclick="keyPress()">
-				<input type=button id="=" name='=' class="opKey" value='=' onclick="keyPress()">
+			<input type=button id="0" name='0' class='numKey Key' value='0' onclick="keyPress()">
+				<input type=button id="." name='.' class="opKey Key" value='.' onclick="keyPress()">
+				<input type=button id="+" name='+' class="opKey Key" value='+' onclick="keyPress()">
+				<input type=button id="=" name='=' class="opKey Key" value='=' onclick="keyPress()">
 			</div>	
 		</form>
 	</div>
