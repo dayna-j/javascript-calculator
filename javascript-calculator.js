@@ -1,13 +1,14 @@
-//function keyPress(){alert('key pressed');}
-
 function Calculator()
 {
+	// this._operandOne = '';
+	this._operandOne = '';
+	this._operandTwo = '';
+
 	alert("calc created");
 	this._inputArray = [];
-	// this._displayResult = $("#displayResult");
-	this._displayResult;
+	this._displayResult = $("#displayResult");
+	this._displayEquation = $("#displayEquation");
 
-	this._displayEquation = '';
 	this.keyPress = function()
 	{
 		var pressedKey;
@@ -16,29 +17,49 @@ function Calculator()
 		//		look at class html attribute:  [numKey, adminKey, 
 		//		opKey]
 		alert("keyPress is working");
-			
 	}
 }
 
-Object.defineProperty(Calculator, "getResultScreen",
-	{
-	get:
-	function()
-	{
-		return this._displayResult;
-	}}
-
-);
-
-Object.defineProperty(Calculator, "setResultScreen",
-    {
-        set:
-            function(screen)
-            {
-                this._displayResult = screen;
-            }}
-
-);
+// Object.defineProperty(calc, "getResultScreen",
+// 	{
+// 	get:
+// 	function()
+// 	{
+// 		return this._displayResult;
+// 		alert("_displayResult");
+// 	}}
+//
+// );
+//
+// Object.defineProperty(Calculator, "setResultScreen",
+//     {
+//         set:
+//             function(screen)
+//             {
+//                 this._displayResult = screen;
+//             }}
+//
+// );
+//
+// Object.defineProperty(Calculator, "getEquationScreen",
+//     {
+//         get:
+//             function()
+//             {
+//                 return this._displayEquation;
+//             }}
+//
+// );
+//
+// Object.defineProperty(Calculator, "setEquationScreen",
+//     {
+//         set:
+//             function(screen)
+//             {
+//                 this._displayEquation = screen;
+//             }}
+//
+// );
 
 $(document).ready(function()
 {
@@ -49,15 +70,13 @@ $(document).ready(function()
 	var opKeys = $(".opKey");
 	var adminKeys = $(".adminKey");
 
-	// var resultScreen = $("#displayResult");
-	calc.setResultScreen =  $("#displayResult");
-	var EquationScreen = $("displayEquations");
+	// calc.setResultScreen =  $("#displayResult");
+	// calc.setEquationScreen = $("#displayEquations");
+	// calc.getResultScreen();
 
 	
 //	$(".adminKey").on("click",function(){calc.keyPress();});
 //	$(".numKey").on("click",function(){calc.keyPress();});
 //	$(".opKey").on("click",function(){calc.keyPress();});
 	$(".Key").on("click",function(){calc.keyPress();});
-	
-	
 });
