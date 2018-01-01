@@ -3,26 +3,33 @@ $(document).ready(function()
 
 function Calculator()
 {
-	alert("calc object created");
+	// alert("calc object created");
 	// OPERAND PROPERTIES
 
-	// this._operandOne = '';
+	// stores the state of the operands.
 	this._operandOne = '';
 	this._operandTwo = '';
 
-	this._inputArray = [];
+	// STATUS FLAG PROPERTIES
+
+	// store binary true or false representing the status of the operands.  true if set, false if empty.
+	this._opSet1 = false;
+	this._opSet2 = false;
+
+	// Calculator will be in freshState when script loads and also when equals function returns.
+	this._freshState = true;
+
+	//
 	this._displayResult = $("#displayResult");
 	this._displayEquation = $("#displayEquation");
 	
 	// BUTTON PROPERTIES
-	
 	this.numKeys = $(".numKey");
 	this.adminKeys = $(".adminKey");
 	this.opKeys = $(".opKeys");
 	this.keys = $(".Key");
 
 	// METHODS
-	
 	this.keyPress = function(event)
     {
         // What happens when a numKey is pressed?
@@ -31,11 +38,11 @@ function Calculator()
         //		opKey]
 
         // The event.target property returns which DOM element triggered the event.
-        var pressedKey = event.target;
-        alert(pressedKey.id);
-        console.log(typeof pressedKey.id);
+        var pressedKey = event.target.id;
+        alert(pressedKey);
+        // console.log(typeof pressedKey);
+        // return this.updateResultScreen(pressedKey)
 
-        
 
         // return pressedKey.id;
 
@@ -44,11 +51,19 @@ function Calculator()
 
 	this.updateResultScreen = function(key)
 	{
-		this.setResultScreen = this.getResultScreen + key;
+		// this.setResultScreen = this.getResultScreen + key;
+		$("#displayResult").innerHTML = $("#displayResult").innerHTML + key;
+	}
+
+	this.resetCalculator = function(resultValue)
+	{// reset both displays to 0.
+
+		$("#displayResult").val(resultValue);
+        $("#displayEquation").val('0');
 	}
 
 }
-
+// Instantiate our Calculator object.
 var calc = new Calculator();
 
 Object.defineProperty(calc, "getResultScreen",
@@ -92,10 +107,37 @@ Object.defineProperty(calc, "getResultScreen",
      }
  );
 
+ // Generic event handler for any button
 $(".Key").on("click",function(){calc.keyPress(event);});
+
+// EVENT HANDLERS FOR BUTTONS
+
+$(".numKey").on("click",function()
+{// event handler for number buttons
+
+//////////////////////////////////////////////////////STATE #1
+
+	// getResultScreen accessor of calc object returns jQuery object for result screen.  .val() extracts the value
+	var newVal = calc.getResultScreen.val();
+
+	if (newVal === '0'){newVal = '';}
+
+
+///////////////////////////////////////////////////////////////
+
+	// alert(typeof newVal);
+
+});
+
+$("#clearAllButton").on("click",function()
+{
+	calc.resetCalculator();
+});
+
 
 console.dir(calc.keys[0]);
 console.dir(calc.getResultScreen);
+// calc.resetCalculator();
 
 
 

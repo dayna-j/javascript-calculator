@@ -34,14 +34,16 @@ form{
 .Key{
 	margin: 1px;
 	border: 2px solid black;
+	border-radius: 7px;
 }
 
 .Key:hover{
-	border: 1px solid black;
+
 }
 
 .Key:active{
-	color:aliceblue;
+	color: rosybrown;
+	border: 1px solid black;
 
 }
 
@@ -50,7 +52,7 @@ form{
 }
 
 #0{
-	width:40px;
+
 }
 
 .adminKey{
