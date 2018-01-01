@@ -16,6 +16,10 @@ body{
 	background-color: #f0f8ff;
 }
 
+form{
+	border-radius: 10px 10px 10px 10px;
+}
+
 #display_fieldset{
 	position: relative;
 	/*top: 1px;*/
@@ -36,12 +40,22 @@ body{
 	border: 1px solid black;
 }
 
+.Key:active{
+	color:aliceblue;
+
+}
+
 .numKey{
 	background-color: #F2F1FF;
 }
 
+#0{
+	width:40px;
+}
+
 .adminKey{
-	background-color: #7BFECD;
+	background-color: #FFDF7B;
+
 }
 
 .opkey{
