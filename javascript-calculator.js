@@ -19,9 +19,9 @@ function Calculator()
 	// Calculator will be in freshState when script loads and also when equals function returns.
 	this._freshState = true;
 
-	//
-	this._displayResult = $("#displayResult");
-	this._displayEquation = $("#displayEquation");
+	// these properties contain the dis
+	this._displayResult = $("#displayResult").val();
+	this._displayEquation = $("#displayEquation").val();
 	
 	// BUTTON PROPERTIES
 	this.numKeys = $(".numKey");
@@ -43,46 +43,46 @@ function Calculator()
         // console.log(typeof pressedKey);
         // return this.updateResultScreen(pressedKey)
 
-
+		return $(this);
         // return pressedKey.id;
 
 
 	}
 
-	this.updateResultScreen = function(key)
-	{
-		// this.setResultScreen = this.getResultScreen + key;
-		$("#displayResult").innerHTML = $("#displayResult").innerHTML + key;
-	}
+	// this.updateResultScreen = function(key)
+	// {
+	// 	// this.setResultScreen = this.getResultScreen + key;
+	// 	$("#displayResult").innerHTML = $("#displayResult").innerHTML + key;
+	// }
 
 	this.resetCalculator = function(resultValue)
 	{// reset both displays to 0.
 
-		$("#displayResult").val(resultValue);
-        $("#displayEquation").val('0');
+		this.setResultScreen = resultValue;
+        // $("#displayResult").val(resultValue);
+        // $("#displayEquation").val('0');
 	}
-
 }
 // Instantiate our Calculator object.
 var calc = new Calculator();
 
 Object.defineProperty(calc, "getResultScreen",
- 	{
+ 	{// get from _displayResults property
  	get:
  		function()
  		{
  			return this._displayResult;
- 			alert(_displayResult);
  		}
  	}
  );
 
  Object.defineProperty(calc, "setResultScreen",
-     {
+     {// set to _displayResult
          set:
              function(screen)
              {
-                 this._displayResult = screen;
+                 // $("#displayResult").val(screen);
+             	this._displayResult = screen;
              }
      }
  );
@@ -108,62 +108,60 @@ Object.defineProperty(calc, "getResultScreen",
  );
 
  // Generic event handler for any button
-$(".Key").on("click",function(){calc.keyPress(event);});
+// $(".Key").on("click",function(){calc.keyPress(event);});
 
 // EVENT HANDLERS FOR BUTTONS
 
-$(".numKey").on("click",function()
+
+
+
+
+$(".numKey").on("click",function(event)
 {// event handler for number buttons
 
-//////////////////////////////////////////////////////STATE #1
+	// toAppend should contain the value of the button that was clicked.
+	var toAppend =  event.target.id;//working
+	// alert(toAppend);
+
+	//////////////////////////////////////////////////////STATE #1
 
 	// getResultScreen accessor of calc object returns jQuery object for result screen.  .val() extracts the value
-	var newVal = calc.getResultScreen.val();
+	var currentVal = calc.getResultScreen;// .getResultScreen returns this._displayResult
 
-	if (newVal === '0'){newVal = '';}
+	console.log("current display val: "+currentVal);
+	// if the display shows 0, we need to remove it before appending the new number.
+	if (currentVal == '0'){
+		currentVal = "";
+		console.log("after test for 0, currentVal: "+currentVal);
+	}
+	var newVal = currentVal + toAppend;//toAppend is the value of the numButton
 
+	calc.
+
+	$("#displayResult").val(newVal);
+	calc.setResultScreen = $("#displayResult").val();
+
+
+	// console.log("To be added to the display: "+currentVal + toAppend);
+	// calc.setResultScreen = calc.getResultScreen + toAppend;
+
+
+
+	// alert($("#displayResult").val());
 
 ///////////////////////////////////////////////////////////////
 
-	// alert(typeof newVal);
+
 
 });
 
 $("#clearAllButton").on("click",function()
 {
-	calc.resetCalculator();
+	calc.resetCalculator(0);
 });
 
-
-console.dir(calc.keys[0]);
-console.dir(calc.getResultScreen);
+// console.dir(calc.keys[0]);
+// console.dir(calc.getResultScreen);
 // calc.resetCalculator();
 
-
-
 });
-
-
-//
-// $(document).ready(function()
-// {
-// 	alert('dom is ready.');
-// //	var calc = new Calculator();
-//
-// 	// var numKeys = $(".numKey");
-// 	// var opKeys = $(".opKey");
-// 	// var adminKeys = $(".adminKey");
-// 	// var keys = $('.Key');
-//
-// 	// calc.setResultScreen =  $("#displayResult");
-// 	// calc.setEquationScreen = $("#displayEquations");
-// 	// calc.getResultScreen();
-//
-//
-// //	$(".adminKey").on("click",function(){calc.keyPress();});
-// //	$(".numKey").on("click",function(){calc.keyPress();});
-// //	$(".opKey").on("click",function(){calc.keyPress();});
-//
-// 	$(".Key").on("click",function(){calc.keyPress();});
-// 	console.log(calc.keys[1]);
-// });
