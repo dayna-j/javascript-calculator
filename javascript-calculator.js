@@ -81,8 +81,8 @@ Object.defineProperty(calc, "getResultScreen",
          set:
              function(screen)
              {
-                 // $("#displayResult").val(screen);
              	this._displayResult = screen;
+                 $("#displayResult").val(screen);
              }
      }
  );
@@ -113,9 +113,6 @@ Object.defineProperty(calc, "getResultScreen",
 // EVENT HANDLERS FOR BUTTONS
 
 
-
-
-
 $(".numKey").on("click",function(event)
 {// event handler for number buttons
 
@@ -128,15 +125,14 @@ $(".numKey").on("click",function(event)
 	// getResultScreen accessor of calc object returns jQuery object for result screen.  .val() extracts the value
 	var currentVal = calc.getResultScreen;// .getResultScreen returns this._displayResult
 
-	console.log("current display val: "+currentVal);
+	console.log("current display val: " + currentVal);
 	// if the display shows 0, we need to remove it before appending the new number.
-	if (currentVal == '0'){
+	if (currentVal == '0')
+	{
 		currentVal = "";
 		console.log("after test for 0, currentVal: "+currentVal);
 	}
 	var newVal = currentVal + toAppend;//toAppend is the value of the numButton
-
-	calc.
 
 	$("#displayResult").val(newVal);
 	calc.setResultScreen = $("#displayResult").val();
@@ -145,19 +141,63 @@ $(".numKey").on("click",function(event)
 	// console.log("To be added to the display: "+currentVal + toAppend);
 	// calc.setResultScreen = calc.getResultScreen + toAppend;
 
-
-
 	// alert($("#displayResult").val());
 
 ///////////////////////////////////////////////////////////////
 
 
-
 });
+
+$("#backButton").on("click",function()
+{
+	var screenSlice = calc.getResultScreen;
+	if(screenSlice.length <2 ){return null;}
+	screenSlice = screenSlice.slice(0,-1);// backspace applied
+
+    $("#displayResult").val(screenSlice);
+    calc.setResultScreen = $("#displayResult").val();
+});
+
+
+
+$("#decimalPoint").on("click",function()
+{
+	var screen = calc.getResultScreen;
+	// console.log(typeof screen); // its  a string
+	console.log(screen);
+	if (screen.indexOf(".") === -1)
+	{
+		return null;
+	}
+	else {
+		calc.setResultScreen = screen + ".";
+
+	}
+});
+
+
+
 
 $("#clearAllButton").on("click",function()
 {
 	calc.resetCalculator(0);
+});
+
+$("#plusMinusButton").on("click", function()
+{
+	var screen = calc.getResultScreen;
+	if(screen.indexOf("-") !== -1 )
+	{
+		// screen = screen.slice(1,-1);
+		
+	}
+	else
+	{
+		screen =("-".concat(screen));
+        $("#displayResult").val(screen);
+        calc.setResultScreen = $("#displayResult").val();
+	}
+
 });
 
 // console.dir(calc.keys[0]);
