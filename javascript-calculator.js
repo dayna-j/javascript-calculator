@@ -148,7 +148,7 @@ $(".numKey").on("click",function(event)
 
 });
 
-$("#backButton").on("click",function()
+$("#backButton").on("click",function()//working
 {
 	var screenSlice = calc.getResultScreen;
 	if(screenSlice.length <2 ){return null;}
@@ -160,21 +160,25 @@ $("#backButton").on("click",function()
 
 
 
-$("#decimalPoint").on("click",function()
+$("#decimalPoint").on("click",function()//working
 {
 	var screen = calc.getResultScreen;
-	// console.log(typeof screen); // its  a string
-	console.log(screen);
+//	console.log(typeof screen); // its  a string
+	console.log(screen.indexOf(".'"));
 	if (screen.indexOf(".") === -1)
-	{
-		return null;
+	{// if decimal point is NOT FOUND
+		calc.setResultScreen = screen + ".";
 	}
 	else {
-		calc.setResultScreen = screen + ".";
-
+		return null;
 	}
 });
 
+
+$("#clearButton").on("click",function()
+{
+	calc.resetCalculator(0);
+});
 
 
 
@@ -183,18 +187,21 @@ $("#clearAllButton").on("click",function()
 	calc.resetCalculator(0);
 });
 
-$("#plusMinusButton").on("click", function()
+$("#plusMinusButton").on("click", function()//working on this
 {
 	var screen = calc.getResultScreen;
-	if(screen.indexOf("-") !== -1 )
-	{
-		// screen = screen.slice(1,-1);
-		
+	if(screen.indexOf("-") === -1 && screen != '0' )
+	{// if '-' character is NOT FOUND, add it
+		screen = ("-".concat(screen));
+        $("#displayResult").val(screen);
+        calc.setResultScreen = $("#displayResult").val();
 	}
 	else
-	{
-		screen =("-".concat(screen));
-        $("#displayResult").val(screen);
+	{// else, if it IS FOUND, take slice
+		console.log("before slice: "+screen);
+		screen = screen.slice(1);
+		console.log("after slice: "+screen);
+		$("#displayResult").val(screen);
         calc.setResultScreen = $("#displayResult").val();
 	}
 
