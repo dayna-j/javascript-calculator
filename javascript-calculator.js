@@ -112,7 +112,7 @@ $(".numKey").on("click",function(event)
 {// event handler for number buttons
 
 	// toAppend should contain the value of the button that was clicked.
-	var toAppend =  event.target.id;//working
+	var toAppend =  event.target.id;
 	// alert(toAppend);
 
 	//////////////////////////////////////////////////////STATE #1
@@ -131,7 +131,9 @@ $(".numKey").on("click",function(event)
 
 	$("#displayResult").val(newVal);
 	calc.setResultScreen = $("#displayResult").val();
-
+	// set newVal to operandOne
+	calc._operandOne = newVal;
+	console.log(calc._operandOne);
 
 	// console.log("To be added to the display: "+currentVal + toAppend);
 	// calc.setResultScreen = calc.getResultScreen + toAppend;
@@ -146,14 +148,16 @@ $(".numKey").on("click",function(event)
 $("#backButton").on("click",function()//working
 {
 	var screenSlice = calc.getResultScreen;
-	if(screenSlice.length <2 ){return null;}
+	if(screenSlice.length <2)
+	{
+		calc.setResultScreen = "0";
+		return null;
+	}
 	screenSlice = screenSlice.slice(0,-1);// backspace applied
 
     $("#displayResult").val(screenSlice);
     calc.setResultScreen = $("#displayResult").val();
 });
-
-
 
 $("#decimalPoint").on("click",function()//working
 {
@@ -169,20 +173,17 @@ $("#decimalPoint").on("click",function()//working
 	}
 });
 
-
 $("#clearButton").on("click",function()
 {
 	calc.resetCalculator(0);
 });
-
-
 
 $("#clearAllButton").on("click",function()
 {
 	calc.resetCalculator("0");
 });
 
-$("#plusMinusButton").on("click", function()//working on this
+$("#plusMinusButton").on("click", function()
 {
 	var screen = calc.getResultScreen;
 	
@@ -217,6 +218,22 @@ $("#plusMinusButton").on("click", function()//working on this
 	
 });
 
+$("#moduloButton").on("click", function()
+{
+	
+});
+	
+$("#squareRootButton").on("click", function()
+{
+	calc.setResultScreen = Math.sqrt(calc.getResultScreen).toString();
+});
+
+$("#recipButton").on("click", function()
+{
+	calc.setResultScreen = (1 / (calc.getResultScreen)).toString();
+});
+	
+	
 // console.dir(calc.keys[0]);
 // console.dir(calc.getResultScreen);
 // calc.resetCalculator();
