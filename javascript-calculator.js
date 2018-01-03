@@ -107,18 +107,16 @@ Object.defineProperty(calc, "getResultScreen",
 
 // EVENT HANDLERS FOR BUTTONS
 
-
 $(".numKey").on("click",function(event)
 {// event handler for number buttons
 
 	// toAppend should contain the value of the button that was clicked.
 	var toAppend =  event.target.id;
-	// alert(toAppend);
 
 	//////////////////////////////////////////////////////STATE #1
 
-	// getResultScreen accessor of calc object returns jQuery object for result screen.  .val() extracts the value
-	var currentVal = calc.getResultScreen;// .getResultScreen returns this._displayResult
+	// getResultScreen accessor of calc object returns jQuery object for result screen.
+	var currentVal = calc.getResultScreen;
 
 	console.log("current display val: " + currentVal);
 	// if the display shows 0, we need to remove it before appending the new number.
