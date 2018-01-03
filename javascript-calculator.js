@@ -19,7 +19,7 @@ function Calculator()
 	// Calculator will be in freshState when script loads and also when equals function returns.
 	this._freshState = true;
 
-	// these properties contain the dis
+	// these properties contain the displays
 	this._displayResult = $("#displayResult").val();
 	this._displayEquation = $("#displayEquation").val();
 	
@@ -49,11 +49,6 @@ function Calculator()
 
 	}
 
-	// this.updateResultScreen = function(key)
-	// {
-	// 	// this.setResultScreen = this.getResultScreen + key;
-	// 	$("#displayResult").innerHTML = $("#displayResult").innerHTML + key;
-	// }
 
 	this.resetCalculator = function(resultValue)
 	{// reset both displays to 0.
@@ -184,20 +179,31 @@ $("#clearButton").on("click",function()
 
 $("#clearAllButton").on("click",function()
 {
-	calc.resetCalculator(0);
+	calc.resetCalculator("0");
 });
 
 $("#plusMinusButton").on("click", function()//working on this
 {
 	var screen = calc.getResultScreen;
-	if(screen.indexOf("-") === -1 && screen != '0' )
+	
+	console.log("from plusMinus btn---screen value is: " + screen +
+			   " and screen type is: "+typeof screen);
+	console.log("screen.indexOf: " + screen.indexOf("-"));
+	
+	
+	
+	if( (screen != "0")  && (screen.indexOf("-") == -1))
 	{// if '-' character is NOT FOUND, add it
 		screen = ("-".concat(screen));
         $("#displayResult").val(screen);
         calc.setResultScreen = $("#displayResult").val();
 	}
 	else
-	{// else, if it IS FOUND, take slice
+	{// else, if ' - ' IS FOUND, take slice
+		if (screen === "0") 
+		{
+			return null;
+		}
 		console.log("before slice: "+screen);
 		screen = screen.slice(1);
 		console.log("after slice: "+screen);
@@ -205,6 +211,10 @@ $("#plusMinusButton").on("click", function()//working on this
         calc.setResultScreen = $("#displayResult").val();
 	}
 
+	
+	
+	
+	
 });
 
 // console.dir(calc.keys[0]);
