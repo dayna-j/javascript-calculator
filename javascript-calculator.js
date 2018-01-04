@@ -257,8 +257,11 @@ $("#recipButton").on("click", function()
 	calc.setResultScreen = (1 / (calc.getResultScreen)).toString();
 	calc._previousOperation = true;
 });
-	
-// console.dir(calc.keys[0]);
+
+$("#equalsButton").on("click", function()
+{return null});
+
+	// console.dir(calc.keys[0]);
 // console.dir(calc.getResultScreen);
 // calc.resetCalculator();
 
