@@ -6,15 +6,18 @@ function Calculator()
 	// alert("calc object created");
 	// OPERAND PROPERTIES
 
-	// stores the state of the operands.
+	// stores the state of the operands and operators.
 	this._operandOne = '';
 	this._operandTwo = '';
-
+	this._operator = '';
 	// STATUS FLAG PROPERTIES
 
-	// store binary true or false representing the status of the operands.  true if set, false if empty.
-	this._opSet1 = false;
-	this._opSet2 = false;
+	// store binary true or false representing the status of the operands
+	// and operator; true if set, false if empty.
+	this._operand1Locked = false;
+	this._operand2Locked = false;
+	this._operatorLocked = false;
+	this._previousOperation = false;
 
 	// Calculator will be in freshState when script loads and also when equals function returns.
 	this._freshState = true;
@@ -50,12 +53,16 @@ function Calculator()
 	}
 
 
-	this.resetCalculator = function(resultValue)
+	this.resetCalculator = function(value)
 	{// reset both displays to 0.
 
-		this.setResultScreen = resultValue;
-        // $("#displayResult").val(resultValue);
-        // $("#displayEquation").val('0');
+		this.setResultScreen = value;
+		this._operandOne = value;
+		this._operandTwo = "0";
+		this._operand1Locked = false;
+		this._operand2Locked = false;
+		this._previousOperation = false;
+		this._operatorLocked = false;
 	}
 }
 // Instantiate our Calculator object.
@@ -119,9 +126,10 @@ $(".numKey").on("click",function(event)
 
 	console.log("current display val: " + currentVal);
 	
-	if (calc._opSet1 === false){
-		
-	}
+//	if (calc._operand1Locked === false){
+//		calc._operandOne = 
+//		
+//	}
 	
 	
 	
@@ -142,8 +150,13 @@ $(".numKey").on("click",function(event)
 
 });
 
-$("#backButton").on("click",function()//working
+$("#backButton").on("click",function()
 {
+	if (calc._previousOperation === true)
+	{
+		return null;
+	}
+	
 	var screenSlice = calc.getResultScreen;
 	if(screenSlice.length <2)
 	{
@@ -182,6 +195,12 @@ $("#clearAllButton").on("click",function()
 
 $("#plusMinusButton").on("click", function()
 {
+
+	if (calc._previousOperation === true)
+	{
+		return null;
+	}
+	
 	var screen = calc.getResultScreen;
 	
 	console.log("from plusMinus btn---screen value is: " + screen +
@@ -222,12 +241,19 @@ $("#moduloButton").on("click", function()
 	
 $("#squareRootButton").on("click", function()
 {
-	calc.setResultScreen = Math.sqrt(calc.getResultScreen).toString();
+	if( calc.getResultScreen.substring(0,1) == '-' )
+	{// disallow taking square root of a negative number.
+		return null;
+	}
+	
+	calc.setResultScreen = Math.sqrt(calc.getResultScreen).toFixed(4).toString();
+	calc._previousOperation = true;
 });
 
 $("#recipButton").on("click", function()
 {
 	calc.setResultScreen = (1 / (calc.getResultScreen)).toString();
+	calc._previousOperation = true;
 });
 	
 	
