@@ -10,6 +10,7 @@ function Calculator()
 	this._operandOne = '';
 	this._operandTwo = '';
 	this._operator = '';
+	
 	// STATUS FLAG PROPERTIES
 
 	// store binary true or false representing the status of the operands
@@ -61,8 +62,8 @@ function Calculator()
 		this._operandTwo = "0";
 		this._operand1Locked = false;
 		this._operand2Locked = false;
-		this._previousOperation = false;
 		this._operatorLocked = false;
+		this._previousOperation = false;
 	}
 }
 // Instantiate our Calculator object.
@@ -152,19 +153,24 @@ $(".numKey").on("click",function(event)
 
 $("#backButton").on("click",function()
 {
-	if (calc._previousOperation === true)
+	var screenSlice = calc.getResultScreen;
+//	alert(screenSlice.length);
+//	alert(screenSlice.indexOf("-"));	
+	if (calc._previousOperation == true )
 	{
 		return null;
 	}
-	
-	var screenSlice = calc.getResultScreen;
-	if(screenSlice.length <2)
+	else if (screenSlice.length == 2 && screenSlice.indexOf("-") === 0)
+	{
+		calc.resetCalculator("0");
+		return null;
+	}
+	else if(screenSlice.length <2)
 	{
 		calc.setResultScreen = "0";
 		return null;
 	}
 	screenSlice = screenSlice.slice(0,-1);// backspace applied
-
     $("#displayResult").val(screenSlice);
     calc.setResultScreen = $("#displayResult").val();
 });
@@ -196,24 +202,23 @@ $("#clearAllButton").on("click",function()
 $("#plusMinusButton").on("click", function()
 {
 
-	if (calc._previousOperation === true)
-	{
-		return null;
-	}
+//	if (calc._previousOperation === true)
+//	{
+//		return null;
+//	}
 	
 	var screen = calc.getResultScreen;
 	
-	console.log("from plusMinus btn---screen value is: " + screen +
-			   " and screen type is: "+typeof screen);
-	console.log("screen.indexOf: " + screen.indexOf("-"));
-	
-	
-	
+//	console.log("from plusMinus btn---screen value is: " + screen +
+//			   " and screen type is: "+typeof screen);
+//	console.log("screen.indexOf: " + screen.indexOf("-"));
+		
 	if( (screen != "0")  && (screen.indexOf("-") == -1))
 	{// if '-' character is NOT FOUND, add it
 		screen = ("-".concat(screen));
         $("#displayResult").val(screen);
         calc.setResultScreen = $("#displayResult").val();
+//		calc._previousOperation = true;
 	}
 	else
 	{// else, if ' - ' IS FOUND, take slice
@@ -221,27 +226,23 @@ $("#plusMinusButton").on("click", function()
 		{
 			return null;
 		}
-		console.log("before slice: "+screen);
+//		console.log("before slice: "+screen);
 		screen = screen.slice(1);
-		console.log("after slice: "+screen);
+//		console.log("after slice: "+screen);
 		$("#displayResult").val(screen);
         calc.setResultScreen = $("#displayResult").val();
 	}
-
-	
-	
-	
-	
 });
 
 $("#moduloButton").on("click", function()
 {
-	
+	return null;
 });
 	
 $("#squareRootButton").on("click", function()
 {
-	if( calc.getResultScreen.substring(0,1) == '-' )
+	var sqrtInput = calc.getResultScreen;
+	if( sqrtInput.substring(0,1) == '-' || sqrtInput == '0' )
 	{// disallow taking square root of a negative number.
 		return null;
 	}
@@ -252,10 +253,10 @@ $("#squareRootButton").on("click", function()
 
 $("#recipButton").on("click", function()
 {
+	if(calc.getResultScreen == '0'){return null;}
 	calc.setResultScreen = (1 / (calc.getResultScreen)).toString();
 	calc._previousOperation = true;
 });
-	
 	
 // console.dir(calc.keys[0]);
 // console.dir(calc.getResultScreen);
