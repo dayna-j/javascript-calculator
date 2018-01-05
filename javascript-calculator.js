@@ -120,7 +120,7 @@ $(".numKey").on("click",function(event)
 	// toAppend should contain the value of the button that was clicked.
 	var toAppend =  event.target.id;
 
-	//////////////////////////////////////////////////////STATE #1
+	/////////////////////////////////////////STATE #1
 
 	// getResultScreen accessor of calc object returns jQuery object for result screen.
 	var currentVal = calc.getResultScreen;
@@ -131,8 +131,6 @@ $(".numKey").on("click",function(event)
 //		calc._operandOne = 
 //		
 //	}
-	
-	
 	
 	
 	
@@ -259,7 +257,9 @@ $("#recipButton").on("click", function()
 });
 
 $("#equalsButton").on("click", function()
-{return null});
+{
+	return null}
+);
 
 	// console.dir(calc.keys[0]);
 // console.dir(calc.getResultScreen);
