@@ -3,7 +3,9 @@
 <head>
 	<title>JavaScript Calculator</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
 	<script src=jquery-3.2.1.js></script>
+	<script src=jquery-ui.min.js></script>
 	<script src=javascript-calculator.js></script>
  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -14,7 +16,7 @@
 		<form name="calculator-form">
 			<fieldset id="display_fieldset">
 			<div>
-				<input type=text class='display' name='displayEquation' id = "displayEquation" value='0' readonly>
+<!--				<input type=text class='display' name='displayEquation' id = "displayEquation" value='0' readonly>-->
 			</div>
 			<div id="display-div">
 				<input type=text class='display' name='displayResult' id="displayResult" value='0' readonly>
@@ -33,7 +35,7 @@
 				<input type=button id="8" name='8' class='numKey Key' value='8'>
 				<input type=button id="9" name='9' class='numKey Key' value='9'>
 				<input type=button id="divideButton" name='/' class="opKey Key" value='/'>
-				<input type=button id="moduloButton" name='%' class="opKey Key" value='%'>
+				<input type=button id="percentButton" name='%' class="opKey Key" value='%'>
 			</div>
 			<div class = 'row'>
 				<input type=button id="4" name='4' class='numKey Key' value='4'>

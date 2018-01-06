@@ -1,6 +1,8 @@
 $(document).ready(function()
 {
 
+$("#form-container").draggable();
+	
 function Calculator()
 {
 	// OPERAND PROPERTIES
@@ -8,7 +10,7 @@ function Calculator()
 	// stores the state of the operands and operators.
 	this._operandOne = '';
 	this._operandTwo = '';
-	this._operator = '';
+//	this._operator = '';
 	this._opCode = 0;			// 0 unset, 1 add,2 subtract,3 mult.,4 divide
 	// STATUS FLAG PROPERTIES
 
@@ -20,7 +22,7 @@ function Calculator()
 	this._previousOperation = false;
 
 	// Calculator will be in freshState when script loads and also when equals function returns.
-	this._freshState = true;
+//	this._freshState = true;
 
 	// these properties contain the displays
 	this._displayResult = $("#displayResult").val();
@@ -66,7 +68,7 @@ function Calculator()
 		this._operand1Locked = false;
 		this._operand2Locked = false;
 		this._operatorLocked = false;
-		this._previousOperation = false;
+//		this._previousOperation = false;
 	}
 }
 // Instantiate our Calculator object.
@@ -195,30 +197,27 @@ $("#addButton").on("click", function()
 	calc._operand1Locked = true;
 	calc._operatorLocked = true;
 	calc._opCode = 1;
-	
-	
-	
-	//	if (!calc._operand1Locked || !calc._operand2Locked)
-//	{
-////		console.log('y');
-//		return null;
-//	}
-//	return null;
 });
 
 $("#subtractButton").on("click", function()
 {
-	return null;
+	calc._operand1Locked = true;
+	calc._operatorLocked = true;
+	calc._opCode = 2;
 });
 
 $("#multiplyButton").on("click", function()
 {
-	return null;
+	calc._operand1Locked = true;
+	calc._operatorLocked = true;
+	calc._opCode = 3;
 });
 	
 $("#divideButton").on("click", function()
 {
-	return null;
+	calc._operand1Locked = true;
+	calc._operatorLocked = true;
+	calc._opCode = 4;
 });
 
 $("#clearButton").on("click", function()
@@ -268,9 +267,9 @@ $("#plusMinusButton").on("click", function()
 	}
 });
 
-$("#moduloButton").on("click", function()
+$("#percentButton").on("click", function()
 {
-	return null;
+	calc.setResultScreen = (calc.getResultScreen / 100);
 });
 	
 $("#squareRootButton").on("click", function()
@@ -299,29 +298,36 @@ $("#equalsButton").on("click", function()
 //		console.log("One of the operands is not locked");
 //		return null;
 //	}
-
 	var result;
 	switch(calc._opCode)
 	{
 		case 1://addition
-//			result = Math.add(calc._operandOne,calc._operandTwo);
-//			console.log(Math.add(1,2));
-			console.log('case1 entered');
-			result = parseInt((calc)._operandOne + calc._operandTwo);
-			console.log(result);
+//			console.log('case1 entered');
+//			result = parseInt((calc)._operandOne + calc._operandTwo);
+			result = parseInt(calc._operandOne) + parseInt(calc._operandTwo);
+//			console.log(result);
 			break;
 		case 2://subtract
-			
+//			console.log('case2 entered');
+			result = parseInt(calc._operandOne) - parseInt(calc._operandTwo);
 			break;
 		case 3://mult.
-			
+//			console.log('case3 entered');
+			result = parseInt(calc._operandOne) * parseInt(calc._operandTwo);
 			break;
 		case 4://div.
-			
+//			console.log('case4 entered');
+			if(calc._operandTwo == "0")
+			{
+				calc.setResultScreen = "Cannot divide by 0";
+				return null;
+			}
+			result = parseInt(calc._operandOne) / parseInt(calc._operandTwo);
 			break;
 	}
 	
-	calc.setResultScreen = result;
+	calc.resetCalculator(result);
+//	calc.setResultScreen = result;
 //	calc._previousOperation = true;
 });
 
