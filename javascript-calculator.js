@@ -3,14 +3,13 @@ $(document).ready(function()
 
 function Calculator()
 {
-	// alert("calc object created");
 	// OPERAND PROPERTIES
 
 	// stores the state of the operands and operators.
 	this._operandOne = '';
 	this._operandTwo = '';
 	this._operator = '';
-	
+	this._opCode = 0;			// 0 unset, 1 add,2 subtract,3 mult.,4 divide
 	// STATUS FLAG PROPERTIES
 
 	// store binary true or false representing the status of the operands
@@ -53,6 +52,10 @@ function Calculator()
 
 	}
 
+	this.clearScreen = function(event)
+	{
+		this.setResultScreen = "0";
+	}
 
 	this.resetCalculator = function(value)
 	{// reset both displays to 0.
@@ -90,66 +93,66 @@ Object.defineProperty(calc, "getResultScreen",
      }
  );
 
- Object.defineProperty(calc, "getEquationScreen",
-     {
-         get:
-             function()
-             {
-                 return this._displayEquation;
-             }
-     }
- );
+// Object.defineProperty(calc, "getEquationScreen",
+//     {
+//         get:
+//             function()
+//             {
+//                 return this._displayEquation;
+//             }
+//     }
+// );
 
- Object.defineProperty(calc, "setEquationScreen",
-     {
-         set:
-             function(screen)
-             {
-                 this._displayEquation = screen;
-             }
-     }
- );
+// Object.defineProperty(calc, "setEquationScreen",
+//     {
+//         set:
+//             function(screen)
+//             {
+//                 this._displayEquation = screen;
+//             }
+//     }
+// );
 
- // Generic event handler for any button
+// Generic event handler for any button
 // $(".Key").on("click",function(){calc.keyPress(event);});
 
 // EVENT HANDLERS FOR BUTTONS
-
-$(".numKey").on("click",function(event)
+$(".numKey").on("click", function(event)
 {
-	// toAppend should contain the value of the button that was clicked.
-	var toAppend =  event.target.id;
-
-	/////////////////////////////////////////STATE #1
-
-	// getResultScreen accessor of calc object returns jQuery object for result screen.
+	if ((calc._operatorLocked && !calc._operand2Locked) || calc._previousOperation)// && calc.getResultScreen.length <2)
+	{
+		calc.clearScreen();
+	}
+//	
+	var toAppend =  $(this).val();// gets number from button
 	var currentVal = calc.getResultScreen;
-
-	console.log("current display val: " + currentVal);
-	
-//	if (calc._operand1Locked === false){
-//		calc._operandOne = 
-//		
-//	}
-	
-	
+//	console.log("current display val: " + currentVal);
 	
 	// if the display shows 0, we need to remove it before appending the new number.
 	if (currentVal == '0')
 	{
 		currentVal = "";
-		console.log("after test for 0, currentVal: "+currentVal);
+//		console.log("after test for 0, currentVal: "+currentVal);
 	}
 	var newVal = currentVal + toAppend;//toAppend is the value of the numButton
-
+	
+	if(calc._operand1Locked)
+	{
+		calc._operandTwo = newVal;
+		calc._operand2Locked = true;
+	}	
+	else{
+		calc._operandOne = newVal;	
+		
+	}
+	console.log("op1 is: " + calc._operandOne + " and op2 is: " + calc._operandTwo);
+	console.log("op1 is locked?: " + calc._operand1Locked + ".  op2 is locked?: " + calc._operand2Locked);
+//	calc._operandOne = newVal;
 	$("#displayResult").val(newVal);
 	calc.setResultScreen = $("#displayResult").val();
-
-///////////////////////////////////////////////////////////////
-
 });
 
-$("#backButton").on("click",function()
+$("#backButton").on("click", function()
 {
 	var screenSlice = calc.getResultScreen;
 //	alert(screenSlice.length);
@@ -173,7 +176,7 @@ $("#backButton").on("click",function()
     calc.setResultScreen = $("#displayResult").val();
 });
 
-$("#decimalPoint").on("click",function()//working
+$("#decimalPoint").on("click", function()//working
 {
 	var screen = calc.getResultScreen;
 //	console.log(typeof screen); // its  a string
@@ -187,9 +190,42 @@ $("#decimalPoint").on("click",function()//working
 	}
 });
 
-$("#clearButton").on("click",function()
+$("#addButton").on("click", function()
 {
-	calc.resetCalculator(0);
+	calc._operand1Locked = true;
+	calc._operatorLocked = true;
+	calc._opCode = 1;
+	
+	
+	
+	//	if (!calc._operand1Locked || !calc._operand2Locked)
+//	{
+////		console.log('y');
+//		return null;
+//	}
+//	return null;
+});
+
+$("#subtractButton").on("click", function()
+{
+	return null;
+});
+
+$("#multiplyButton").on("click", function()
+{
+	return null;
+});
+	
+$("#divideButton").on("click", function()
+{
+	return null;
+});
+
+$("#clearButton").on("click", function()
+{
+
+	calc.setResultScreen = 0;
+	//	calc.resetCalculator(0);
 });
 
 $("#clearAllButton").on("click",function()
@@ -258,11 +294,35 @@ $("#recipButton").on("click", function()
 
 $("#equalsButton").on("click", function()
 {
-	return null}
-);
+//	if (!calc._operand1Locked || !calc._operand2Locked)
+//	{
+//		console.log("One of the operands is not locked");
+//		return null;
+//	}
 
-	// console.dir(calc.keys[0]);
-// console.dir(calc.getResultScreen);
-// calc.resetCalculator();
+	var result;
+	switch(calc._opCode)
+	{
+		case 1://addition
+//			result = Math.add(calc._operandOne,calc._operandTwo);
+//			console.log(Math.add(1,2));
+			console.log('case1 entered');
+			result = parseInt((calc)._operandOne + calc._operandTwo);
+			console.log(result);
+			break;
+		case 2://subtract
+			
+			break;
+		case 3://mult.
+			
+			break;
+		case 4://div.
+			
+			break;
+	}
+	
+	calc.setResultScreen = result;
+//	calc._previousOperation = true;
+});
 
 });
