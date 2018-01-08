@@ -8,7 +8,7 @@ function Calculator()
 	// OPERAND PROPERTIES
 
 	// stores the state of the operands and operators.
-	this._operandOne = '';
+	this._operandOne = '0';
 	this._operandTwo = '';
 //	this._operator = '';
 	this._opCode = 0;			// 0 unset, 1 add,2 subtract,3 mult.,4 divide
@@ -20,9 +20,6 @@ function Calculator()
 	this._operand2Locked = false;
 	this._operatorLocked = false;
 	this._previousOperation = false;
-
-	// Calculator will be in freshState when script loads and also when equals function returns.
-//	this._freshState = true;
 
 	// these properties contain the displays
 	this._displayResult = $("#displayResult").val();
@@ -37,11 +34,6 @@ function Calculator()
 	// METHODS
 	this.keyPress = function(event)
     {
-        // What happens when a numKey is pressed?
-        // 1) Find out what kind of key it was.  num/admin/op
-        //		look at class html attribute:  [numKey, adminKey,
-        //		opKey]
-
         // The event.target property returns which DOM element triggered the event.
         var pressedKey = event.target.id;
         alert(pressedKey);
@@ -50,8 +42,6 @@ function Calculator()
 
 		return $(this);
         // return pressedKey.id;
-
-
 	}
 
 	this.clearScreen = function(event)
@@ -68,7 +58,7 @@ function Calculator()
 		this._operand1Locked = false;
 		this._operand2Locked = false;
 		this._operatorLocked = false;
-//		this._previousOperation = false;
+		this._previousOperation = false;
 	}
 }
 // Instantiate our Calculator object.
@@ -121,39 +111,52 @@ Object.defineProperty(calc, "getResultScreen",
 // EVENT HANDLERS FOR BUTTONS
 $(".numKey").on("click", function(event)
 {
-	if ((calc._operatorLocked && !calc._operand2Locked) || calc._previousOperation)// && calc.getResultScreen.length <2)
+//	if ( (calc._operatorLocked && !calc._operand2Locked))// || calc._previousOperation)
+//	{
+//		calc.clearScreen();
+//	}
+	
+	if (calc._previousOperation)
 	{
-		calc.clearScreen();
+		calc.setResultScreen = '';
+		//		calc.clearScreen();// clear screen puts a 0 into the display
+		calc._previousOperation = false;
 	}
-//	
-	var toAppend =  $(this).val();// gets number from button
-	var currentVal = calc.getResultScreen;
-//	console.log("current display val: " + currentVal);
+	
+	var digitToAppend =  $(this).val();// gets number from button
+	var currentScreen = calc.getResultScreen;
+	console.log("current display val: " + currentScreen);	
 	
 	// if the display shows 0, we need to remove it before appending the new number.
-	if (currentVal == '0')
+	if (currentScreen == '0')
 	{
-		currentVal = "";
-//		console.log("after test for 0, currentVal: "+currentVal);
+		currentScreen = "";
+		console.log("after test for 0, currentVal: " + currentScreen);
 	}
-	var newVal = currentVal + toAppend;//toAppend is the value of the numButton
+	var newScreenVal = currentScreen + digitToAppend;
 	
 	if(calc._operand1Locked)
 	{
-		calc._operandTwo = newVal;
+//		calc.clearScreen();
+		calc._operandTwo = newScreenVal;//+=
 		calc._operand2Locked = true;
 	}	
-	else{
-		calc._operandOne = newVal;	
-		
+	else
+	{
+		calc._operandOne = newScreenVal;	
 	}
 	console.log("op1 is: " + calc._operandOne + " and op2 is: " + calc._operandTwo);
 	console.log("op1 is locked?: " + calc._operand1Locked + ".  op2 is locked?: " + calc._operand2Locked);
 //	calc._operandOne = newVal;
-	$("#displayResult").val(newVal);
+	$("#displayResult").val(newScreenVal);
 	calc.setResultScreen = $("#displayResult").val();
 });
 
+//$(".numKey").on( "keydown", function(event) 
+//{
+//	console.log(event.which);
+//});
+	
 $("#backButton").on("click", function()
 {
 	var screenSlice = calc.getResultScreen;
@@ -180,14 +183,20 @@ $("#backButton").on("click", function()
 
 $("#decimalPoint").on("click", function()//working
 {
-	var screen = calc.getResultScreen;
-//	console.log(typeof screen); // its  a string
-	console.log(screen.indexOf(".'"));
-	if (screen.indexOf(".") === -1)
-	{// if decimal point is NOT FOUND
-		calc.setResultScreen = screen + ".";
+	if(calc._operatorLocked)
+	{
+		calc.clearScreen();
 	}
-	else {
+	
+	var currentScreen = calc.getResultScreen;
+	console.log("currentScreen inside decimal point function: "+ currentScreen);
+	console.log(currentScreen.indexOf("."));
+	
+	if (currentScreen.indexOf(".") === -1)
+	{// if decimal point is NOT FOUND
+		calc.setResultScreen = currentScreen + ".";
+	}
+	else {// if decimal point is found, do nothing
 		return null;
 	}
 });
@@ -197,6 +206,8 @@ $("#addButton").on("click", function()
 	calc._operand1Locked = true;
 	calc._operatorLocked = true;
 	calc._opCode = 1;
+//	console.log("opcode: "+calc._opCode);	
+	calc.clearScreen();
 });
 
 $("#subtractButton").on("click", function()
@@ -204,6 +215,7 @@ $("#subtractButton").on("click", function()
 	calc._operand1Locked = true;
 	calc._operatorLocked = true;
 	calc._opCode = 2;
+	calc.clearScreen();
 });
 
 $("#multiplyButton").on("click", function()
@@ -211,6 +223,7 @@ $("#multiplyButton").on("click", function()
 	calc._operand1Locked = true;
 	calc._operatorLocked = true;
 	calc._opCode = 3;
+	calc.clearScreen();
 });
 	
 $("#divideButton").on("click", function()
@@ -218,6 +231,7 @@ $("#divideButton").on("click", function()
 	calc._operand1Locked = true;
 	calc._operatorLocked = true;
 	calc._opCode = 4;
+	calc.clearScreen();
 });
 
 $("#clearButton").on("click", function()
@@ -298,22 +312,24 @@ $("#equalsButton").on("click", function()
 //		console.log("One of the operands is not locked");
 //		return null;
 //	}
+
+	console.log(calc.getResultScreen);
 	var result;
+	
 	switch(calc._opCode)
 	{
 		case 1://addition
-//			console.log('case1 entered');
-//			result = parseInt((calc)._operandOne + calc._operandTwo);
-			result = parseInt(calc._operandOne) + parseInt(calc._operandTwo);
-//			console.log(result);
+			console.log('case1 entered');
+			result = parseFloat(calc._operandOne) + parseFloat(calc._operandTwo);
+			console.log(result);
 			break;
 		case 2://subtract
-//			console.log('case2 entered');
-			result = parseInt(calc._operandOne) - parseInt(calc._operandTwo);
+			console.log('case2 entered');
+			result = parseFloat(calc._operandOne) - parseFloat(calc._operandTwo);
 			break;
 		case 3://mult.
-//			console.log('case3 entered');
-			result = parseInt(calc._operandOne) * parseInt(calc._operandTwo);
+			console.log('case3 entered');
+			result = parseFloat(calc._operandOne) * parseFloat(calc._operandTwo);
 			break;
 		case 4://div.
 //			console.log('case4 entered');
@@ -322,13 +338,14 @@ $("#equalsButton").on("click", function()
 				calc.setResultScreen = "Cannot divide by 0";
 				return null;
 			}
-			result = parseInt(calc._operandOne) / parseInt(calc._operandTwo);
+			result = parseFloat(calc._operandOne) / parseFloat(calc._operandTwo);
 			break;
 	}
-	
+	// always entered after switch
+
 	calc.resetCalculator(result);
 //	calc.setResultScreen = result;
-//	calc._previousOperation = true;
+	calc._previousOperation = true;
 });
 
 });
