@@ -285,23 +285,52 @@ $("#percentButton").on("click", function()
 {
 	calc.setResultScreen = (calc.getResultScreen / 100);
 });
+
+$("#expButton").on("click", function()
+{
+	return null;
+});
 	
 $("#squareRootButton").on("click", function()
 {
 	var sqrtInput = calc.getResultScreen;
+	var result;
 	if( sqrtInput.substring(0,1) == '-' || sqrtInput == '0' )
 	{// disallow taking square root of a negative number.
 		return null;
 	}
+	result = Math.sqrt(calc.getResultScreen).toFixed(4).toString();
 	
-	calc.setResultScreen = Math.sqrt(calc.getResultScreen).toFixed(4).toString();
+	if(calc._operand1Locked)
+	{
+		calc._operandTwo =  result;
+	}
+	else
+	{
+		calc._operandOne = result;
+	}
+	
+	calc.setResultScreen = result;
 	calc._previousOperation = true;
 });
 
 $("#recipButton").on("click", function()
 {
 	if(calc.getResultScreen == '0'){return null;}
-	calc.setResultScreen = (1 / (calc.getResultScreen)).toString();
+	var result;
+	result = (1 / (calc.getResultScreen)).toString();
+	
+	if(calc._operand1Locked)
+	{
+		calc._operandTwo =  result;
+	}
+	else
+	{
+		calc._operandOne = result;
+	}
+	
+//	calc.setResultScreen = (1 / (calc.getResultScreen)).toString();
+	calc.setResultScreen = result;
 	calc._previousOperation = true;
 });
 
