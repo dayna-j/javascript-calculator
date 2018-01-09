@@ -2,7 +2,8 @@
 
 <head>
 	<title>JavaScript Calculator</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
+<!--	<link rel="stylesheet" type="text/css" href="main.css">-->
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
 	<script src=jquery-3.2.1.js></script>
 	<script src=jquery-ui.min.js></script>
@@ -14,55 +15,67 @@
 	<div id="form-container">
 	<div id="flex-container">
 		<form name="calculator-form">
-			<fieldset id="display_fieldset">
-			<div>
-<!--				<input type=text class='display' name='displayEquation' id = "displayEquation" value='0' readonly>-->
-			</div>
+<!--			<fieldset id="display_fieldset">-->
 			<div id="display-div">
 				<input type=text class='display' name='displayResult' id="displayResult" value='0' readonly>
 			</div>
-			</fieldset>
-			<!--<fieldset id="buttons_fieldset">-->
+<!--			</fieldset>-->
+<!--			<fieldset id="buttons_fieldset">-->
 			<div class = 'row'>
 				<input type="button" id="backButton" name="backButton" class="adminKey Key" value="<<">
+				
 				<input type="button" id="clearButton" name="clearButton" class="adminKey Key" value="C">
-				<input type="button" id="plusMinusButton" name="plusMinusButton" class="opKey Key" value="±" >
+				
+				<input type=button id="piButton" name='piButton' class='opKey Key' value='π'>
+				
 				<input type="button" id="squareRootButton" name="squareRootButton" class="opKey Key" value="√" >
 				
 				<input type=button id="squareButton" name='squareButton' class="opKey Key" value='x²'>
-				
 			</div>
 			<div class = 'row'>		
 				<input type=button id='7' name='7' class='numKey Key' value='7'>
+				
 				<input type=button id="8" name='8' class='numKey Key' value='8'>
+				
 				<input type=button id="9" name='9' class='numKey Key' value='9'>
-				<input type=button id="divideButton" name='divideButton' class="opKey Key" value='÷'>
-				<input type=button id="percentButton" name='percentButton' class="opKey Key" value='%'>
+				
+				<input type=button id="addButton" name='addButton' class="opKey Key" value='+'>
+				
+				<input type=button id="recipButton" name='recipButton' class="opKey Key" value='x⁻¹'>
 			</div>
 			<div class = 'row'>
 				<input type=button id="4" name='4' class='numKey Key' value='4'>
+				
 				<input type=button id="5" name='5' class='numKey Key' value='5'>
+				
 				<input type=button id="6" name='6' class='numKey Key' value='6'>
-				<input type=button id="multiplyButton" name='multiplyButton' class="opKey Key" value='×'>
-				<input type=button id="recipButton" name='recipButton' class="opKey Key" value='x⁻¹'>
 				
-				
+				<input type=button id="subtractButton" name='subtractButton' class='opKey Key' value='-'>				
+				<input type=button id="percentButton" name='percentButton' class="opKey Key" value='%'>
 				
 			</div>
 			<div class='row'>
 				<input type=button id="1" name='1' class='numKey Key' value='1'>
+				
 				<input type=button id="2" name='2' class='numKey Key' value='2'>
+				
 				<input type=button id="3" name='3' class='numKey Key' value='3'>
-				<input type=button id="subtractButton" name='subtractButton' class='opKey Key' value='-'>
-				<input type=button id="piButton" name='piButton' class='opKey Key' value='π'>
+			
+				<input type=button id="multiplyButton" name='multiplyButton' class="opKey Key" value='×'>
 			</div>
+				
 			<div class = 'row'>
-				<input type=button id="0" name='0' class='numKey Key' value='0'>
-				<input type=button id="decimalPoint" name='decimalPoint' class="opKey Key" value='.'>
-				<input type=button id="addButton" name='addButton' class="opKey Key" value='+'>
-				<input type=button id="equalsButton" name='equalsButton' class="opKey Key" value='='>
+			<input type="button" id="plusMinusButton" name="plusMinusButton" class="opKey Key" value="±">
+			
+			<input type=button id="0" name='0' class='numKey Key' value='0'>
+			
+			<input type=button id="decimalPoint" name='decimalPoint' class="opKey Key" value='.'>
+			
+			<input type=button id="divideButton" name='divideButton' class="opKey Key" value='÷'>
+			
+			<input type=button id="equalsButton" name='equalsButton' class="opKey Key" value='='>
 			</div>
-			</fieldset>
+<!--			</fieldset>-->
 		</form>
 	</div>
 	</div>

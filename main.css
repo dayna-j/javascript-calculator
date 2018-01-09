@@ -36,6 +36,8 @@ form{
 	margin: 1px;
 	border: 2px solid black;
 	border-radius: 7px;
+	height: 30px;
+	width: 30px;
 }
 
 .Key:hover{
@@ -66,6 +68,10 @@ form{
 }
 
 .row{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+/*	justify-content:center;*/
 	margin: 4px;
 }
 
