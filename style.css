@@ -1,20 +1,19 @@
 *{
 	margin: 0 auto;
 	box-sizing: border-box;
-
 }
 
 body{
-/*	background-color: #f0f8ff;*/
+	background-color: #f0f8ff;
 
-	background: linear-gradient(to bottom right, #f0f8ff, #F0F8FF);
+/*	background: linear-gradient(to bottom right, #f0f8ff, #B4DCFF);*/
 }
 /* outermost div container */
+
+
 #form-container{
 	display:relative;
 	top: 100px;
-	
-	
 }
 
 /* directly contained by outermost container */
@@ -32,20 +31,24 @@ form{
 
 #display-div{
 	display: flex;
+
 /*	justify-content: center;*/
 /*	margin: 0 auto;*/
 
 }
 
 .display{
+	background-color: #f0f8ff;
+/*	background-color: #EFFFF9;*/
 	font-family: monospace;
 	font-size: 1.5em;
 	color: cadetblue;
-	text-align: right;
+	text-align: center;
 	padding: 10px;
 	margin-bottom: 14px;
 	border-style: none;
-	background-color:;
+	
+
 }
 
 .row{
@@ -57,18 +60,34 @@ form{
 .Key{
 	background-color: #F0F8FF;
 	margin: 5px;
-	height: 55px;
-	width: 55px;
-	font-size: 1em;
+	height: 60px;
+	width: 60px;
+/*	color: red;*/
+	font-size: 1.0em;				
 	border-style: none;
+	outline: none;
 /*	border-left: 10px;*/
 /*	border-top: 10px;*/
 /*	border-color:yellow;*/
+	transition: font-size .3s ease;
+/*	transition: background-color .5s ease-in; */
 }
 
 .Key:hover{
-	border: 1px inset;
+	background-color: #F2F1FF;
+	color: #86C6FF;
+	font-size: 1.3em;
+	
+	/*	border: 1px inset;*/
 /*	border-top-color: coral;*/
+
+}
+
+.Key:active{
+/*	border: 1px inset;*/
+	font-size: 1.5em;
+	color: #86C6FF;	
+
 }
 
 
