@@ -286,9 +286,22 @@ $("#percentButton").on("click", function()
 	calc.setResultScreen = (calc.getResultScreen / 100);
 });
 
-$("#expButton").on("click", function()
+$("#squareButton").on("click", function()
 {
-	return null;
+	var squareInput = calc.getResultScreen;// the base of exponentiation
+	var result = Math.pow(squareInput,2)
+	
+	if(calc._operand1Locked)
+	{
+		calc._operandTwo =  result;
+	}
+	else
+	{
+		calc._operandOne = result;
+	}
+	
+	calc.setResultScreen = result;
+	calc._previousOperation = true;
 });
 	
 $("#squareRootButton").on("click", function()
@@ -334,6 +347,24 @@ $("#recipButton").on("click", function()
 	calc._previousOperation = true;
 });
 
+$("#piButton").on("click", function()
+{
+	var pi = Math.PI;
+	
+		if(calc._operand1Locked)
+	{
+		calc._operandTwo =  pi;
+	}
+	else
+	{
+		calc._operandOne = pi;
+	}
+	
+	calc.setResultScreen = pi;
+	calc._previousOperation = true;
+	
+});
+	
 $("#equalsButton").on("click", function()
 {
 //	if (!calc._operand1Locked || !calc._operand2Locked)
