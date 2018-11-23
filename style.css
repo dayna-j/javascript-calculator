@@ -5,6 +5,9 @@
 
 body{
 	background-color: #f0f8ff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 /*	background: linear-gradient(to bottom right, #f0f8ff, #B4DCFF);*/
 }
@@ -12,21 +15,19 @@ body{
 
 
 #form-container{
-	display:relative;
-	top: 100px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	/* top: 100px; */
+	height: 100%;
 }
 
 /* directly contained by outermost container */
 #flex-container{
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-
-/*
-form{
-
-	
-}
-*/
 
 
 #display-div{
@@ -39,7 +40,6 @@ form{
 
 .display{
 	background-color: #f0f8ff;
-/*	background-color: #EFFFF9;*/
 	
 	font-family: monospace;
 	font-size: 1.5em;
