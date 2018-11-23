@@ -1,0 +1,104 @@
+*{
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+body{
+	background-color: #f0f8ff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+/*	background: linear-gradient(to bottom right, #f0f8ff, #B4DCFF);*/
+}
+/* outermost div container */
+
+
+#form-container{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	/* top: 100px; */
+	height: 100%;
+}
+
+/* directly contained by outermost container */
+#flex-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+#display-div{
+	display: flex;
+
+/*	justify-content: center;*/
+/*	margin: 0 auto;*/
+
+}
+
+.display{
+	background-color: #f0f8ff;
+	
+	font-family: monospace;
+	font-size: 1.5em;
+	color: cadetblue;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 14px;
+	border-style: none;
+	
+
+}
+
+.row{
+	display: flex;
+}
+
+/* every button */
+
+.Key{
+	background-color: #F0F8FF;
+	
+	margin: 5px;
+	height: 60px;
+	width: 60px;
+/*	color: ;*/
+	font-size: 1.0em;				
+	border-style: none;
+	outline: none;
+/*	border-left: 10px;*/
+/*	border-top: 10px;*/
+
+	transition: font-size .3s ease-in;
+	transition: background-color .6s ease-out; 
+}
+
+.Key:hover{
+	/*	background-color: #F2F1FF;*/
+	background-color: lightyellow;
+	color: #86C6FF;
+	font-size: 1.3em;
+	
+	border: 1px inset;
+/*	border-top: red;*/
+/*	border-left: red;*/
+
+}
+
+.Key:active{
+/*	border: 1px inset;*/
+	font-size: 1.5em;
+	color: #86C6FF;	
+
+}
+
+
+.numKey{
+	
+}
+
+#decimalPoint{
+	font-weight: 700;
+}
